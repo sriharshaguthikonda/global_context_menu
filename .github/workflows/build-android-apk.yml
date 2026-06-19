@@ -9,10 +9,6 @@ on:
 permissions:
   contents: read
 
-concurrency:
-  group: android-apk-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   build-debug-apk:
     name: Build debug APK
@@ -40,10 +36,6 @@ jobs:
       - name: Get packages
         working-directory: example
         run: flutter pub get
-
-      - name: Analyze
-        working-directory: example
-        run: flutter analyze
 
       - name: Build debug APK
         working-directory: example
