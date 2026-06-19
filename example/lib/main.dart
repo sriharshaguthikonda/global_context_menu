@@ -96,6 +96,10 @@ class _TextRouterHomeState extends State<TextRouterHome> {
     await _native('openAppInfo', const <String, Object?>{});
   }
 
+  Future<void> _close() async {
+    await GlobalContextMenu.finishActivity();
+  }
+
   String get _encodedText => Uri.encodeComponent(_selectedText);
 
   @override
@@ -193,7 +197,7 @@ class _TextRouterHomeState extends State<TextRouterHome> {
             ),
             _RouterButton(
               label: 'Close',
-              onPressed: () => GlobalContextMenu.finishActivity(),
+              onPressed: _close,
             ),
             const SizedBox(height: 16),
             const Text(
