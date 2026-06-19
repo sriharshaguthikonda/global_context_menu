@@ -79,8 +79,8 @@ open class RouterFlutterActivity : FlutterActivity() {
         try {
             startActivity(sendIntent)
             return
-        } catch (_: ActivityNotFoundException) {
-        } catch (_: Exception) {
+        } catch (ignored: ActivityNotFoundException) {
+        } catch (ignored: Exception) {
         }
 
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
@@ -112,7 +112,7 @@ open class RouterFlutterActivity : FlutterActivity() {
         try {
             startActivity(preferredIntent)
             return
-        } catch (_: Exception) {
+        } catch (ignored: Exception) {
         }
 
         val fallbackIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
