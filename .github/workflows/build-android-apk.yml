@@ -43,10 +43,28 @@ jobs:
 
       - name: Build debug APK
         working-directory: example
-        run: flutter build apk --debug
+        shell: bash
+        run: |
+          set +e
+          flutter build apk --debug 2>&1 | tee ../flutter-build.log
+          code=${PIPESTATUS[0]}
+          echo "$code" > ../flutter-build-exit-code.txt
+          exit "$code"
 
       - name: Upload APK artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: text-router-debug-apk
           path: example/build/app/outputs/flutter-apk/app-debug.apk
+          if-no-files-found: ignore
+
+      - name: Upload build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: text-router-build-log
+          path: |
+            flutter-build.log
+            flutter-build-exit-code.txt
+          if-no-files-found: ignore
