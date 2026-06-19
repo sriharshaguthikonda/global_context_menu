@@ -6,7 +6,6 @@
         <package android:name="ai.perplexity.app.android" />
         <package android:name="com.microsoft.emmx" />
         <package android:name="com.truecaller" />
-
         <intent>
             <action android:name="android.intent.action.SEND" />
             <data android:mimeType="text/plain" />
@@ -14,7 +13,7 @@
     </queries>
 
     <application
-        android:label="🤖"
+        android:label="Text Router"
         android:name="${applicationName}"
         android:allowBackup="false"
         android:usesCleartextTraffic="false"
@@ -40,10 +39,11 @@
 
         <activity
             android:name=".TextProcessorActivity"
-            android:label="🤖"
+            android:label="AI"
             android:exported="true"
+            android:excludeFromRecents="true"
             android:theme="@style/LaunchTheme">
-            <intent-filter android:label="🤖" android:priority="999">
+            <intent-filter android:label="AI" android:priority="999">
                 <action android:name="android.intent.action.PROCESS_TEXT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
